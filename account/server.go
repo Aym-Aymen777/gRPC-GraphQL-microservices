@@ -11,6 +11,7 @@ import (
 )
 
 type grpcServer struct {
+	pb.UnimplementedAccountServiceServer
 	Service Service
 }
 

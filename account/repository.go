@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"log"
 	"github.com/Aym-Aymen777/gRPC-GraphQL-microservices/account/types"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type Repository interface {
