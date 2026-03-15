@@ -1,0 +1,8 @@
+services:
+ account:
+ catalog:
+ order:
+ garphql:
+ accountdb:
+ catalogdb:
+ orderdb:

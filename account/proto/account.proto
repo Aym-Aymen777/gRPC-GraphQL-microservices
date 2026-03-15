@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package ="github.com/Aym-Aymen777/gRPC-GraphQL-microservices/account/pb";
+
+
+message Account {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+message CreateAccountRequest {
+  string username = 1;
+  string email = 2;
+}
+
+message CreateAccountResponse {
+  string id = 1;
+}
+
+message GetAccountDetailsRequest {
+  string id = 1;
+}
+
+message GetAccountDetailsResponse {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+message GetAccountsRequest {
+  uint64 skip = 1;
+  uint64 limit = 2;
+}
+
+message GetAccountsResponse {
+  repeated GetAccountDetailsResponse accounts = 1;
+}
+
+service AccountService {
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse);
+  rpc GetAccountDetails(GetAccountDetailsRequest) returns (GetAccountDetailsResponse);
+  rpc GetAccounts(GetAccountsRequest) returns (GetAccountsResponse);
+}
