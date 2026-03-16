@@ -30,8 +30,7 @@ func NewMySQLRepository(url string) (Repository, error) {
 		log.Fatal(err)
 		return nil, err
 	}
-	return nil, nil
-	//return &mySQLRepository{db: db}, nil
+	return &mySQLRepository{db: db}, nil
 }
 
 func (r *mySQLRepository) Close() {

@@ -15,17 +15,19 @@ type grpcServer struct {
 	Service Service
 }
 
-func ListenGRPC(s Service, port string) *grpcServer {
+func ListenGRPC(s Service, port string) error  {
 	listen, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatal(err)
+		return err
 	}
 	serv := grpc.NewServer()
 	pb.RegisterAccountServiceServer(serv, &grpcServer{Service: s})
 	if err := serv.Serve(listen); err != nil {
 		log.Fatal(err)
+		return err
 	}
-	return &grpcServer{Service: s}
+	return nil
 }
 
 func (s *grpcServer) CreateAccount(ctx context.Context, req *pb.CreateAccountRequest) (*pb.CreateAccountResponse, error) {

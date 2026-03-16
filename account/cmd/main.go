@@ -23,7 +23,9 @@ func main() {
 		log.Fatal(err)
 	}
 	defer repo.Close()
+	log.Printf("Account service is connecting to MySQL ..... ⏳")
 	service := account.NewAccountService(repo)
+	log.Printf("Account service is connected to MySQL ✅")
+	log.Printf("Account service is running on port %s 🎯", cfg.GRPCPort)
 	account.ListenGRPC(service, cfg.GRPCPort)
-	log.Printf("Account service is running on port %s", cfg.GRPCPort)
 }
