@@ -20,7 +20,7 @@ Client (Web / Mobile)
  │ Microservice  │ Microservice  │ Microservice  │
  └───────────────┴───────────────┴───────────────┘
         ↓               ↓               ↓
-      MySQL           MySQL           MySQL
+      MySQL        ElasticSearch       MySQL
 ```
 
 Each service is **independent and responsible for its own data**.
