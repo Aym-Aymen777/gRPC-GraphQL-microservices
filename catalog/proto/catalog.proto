@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package catalog;
+
+option go_package ="github.com/Aym-Aymen777/gRPC-GraphQL-microservices/catalog/pb";
+
+service CatalogService {
+  rpc AddProduct(AddProductRequest) returns (AddProductResponse);
+  rpc GetProductDetails(GetProductDetailsRequest) returns (GetProductDetailsResponse);
+  rpc GetProductsByIDs(GetProductsByIDsRequest) returns (GetProductsByIDsResponse);
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+  rpc RemoveProduct(RemoveProductRequest) returns (RemoveProductResponse);
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse);
+  rpc SearchForProducts(SearchForProductsRequest) returns (SearchForProductsResponse);
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+}
+
+message AddProductRequest {
+  Product product = 1;
+}
+
+message AddProductResponse {
+}
+
+message GetProductDetailsRequest {
+  string id = 1;
+}
+
+message GetProductDetailsResponse {
+  Product product = 1;
+}
+
+message GetProductsByIDsRequest {
+    repeated string ids = 1;
+}
+
+message GetProductsByIDsResponse {
+  repeated Product products = 1;
+}
+
+message UpdateProductRequest {
+  Product product = 1;
+}
+
+message UpdateProductResponse {
+}
+
+message RemoveProductRequest {
+  string id = 1;
+}
+
+message RemoveProductResponse {
+    string id = 1;
+}
+
+message ListProductsRequest {
+    int32 skip = 1;
+    int32 limit = 2;
+}
+
+message ListProductsResponse {
+  repeated Product products = 1;
+}
+
+message SearchForProductsRequest {
+  string query = 1;
+  int32 skip = 2;
+  int32 limit = 3;
+}
+
+message SearchForProductsResponse {
+  repeated Product products = 1;
+}

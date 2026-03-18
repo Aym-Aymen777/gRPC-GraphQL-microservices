@@ -25,17 +25,9 @@ func NewService(repo Repository) *CatalogService {
 	return &CatalogService{repo: repo}
 }
 
-func (s *CatalogService) AddProduct(ctx context.Context, name string, description string, price float64) error {
-	product := &types.Product{
-		ID:          utils.GenerateID(),
-		Name:        name,
-		Description: description,
-		Price:       price,
-	}
-	if err := s.repo.CreateProduct(ctx, product); err != nil {
-		return err
-	}
-	return nil
+func (s *CatalogService) AddProduct(ctx context.Context, product *types.Product) error {
+	product.ID = utils.GenerateID()
+	return s.repo.CreateProduct(ctx, product)
 }
 
 func (s *CatalogService) GetProductDetails(ctx context.Context, id string) (*types.Product, error) {

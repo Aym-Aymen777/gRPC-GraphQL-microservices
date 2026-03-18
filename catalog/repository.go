@@ -33,8 +33,8 @@ type ElasticSearchRepository struct {
 	db *elasticsearch.Client
 }
 
-func NewElasticSearchRepository(url string) (Repository, error) {
-	db, err := elasticsearch.NewClient(elasticsearch.Config{Addresses: []string{url}})
+func NewElasticSearchRepository(cfg elasticsearch.Config) (Repository, error) {
+	db, err := elasticsearch.NewClient(cfg)
 	if err != nil {
 		return nil, err
 	}
